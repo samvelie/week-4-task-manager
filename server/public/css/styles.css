@@ -1,3 +1,11 @@
 input {
   width:240px;
 }
+
+.task {
+  border: 1px dotted black;
+}
+
+.completed {
+  color: blue;
+}

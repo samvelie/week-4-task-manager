@@ -18,20 +18,23 @@ When the Task is created, it should be stored inside of a database (SQL)
   [x]Route to router.post
   []INSERT SQL
 Whenever a Task is created the front end should refresh to show all tasks that need to be completed.
-  []GET AJAX
-  []route to router.get
-  []Display response as DIV on DOM
-  //Not required
-  []Edit button?
-  []Route to router.put
-  []UPDATE SQL
-  //Not required
+  [x]GET AJAX
+  [x]route to router.get
+  [x]Display response as DIV on DOM
+
+  ---Not required
+    []Edit button?
+    []Route to router.put
+    []UPDATE SQL
+  /Not required
+
 Each Task should have an option to 'Complete' or 'Delete'.
-  --Complete
-  []Complete button/check box
+  --For Complete
+  [x]Complete button/check box
   []router.put
   Whether or not a Task is complete should also be stored in the database.
   [] Insert True into Complete Column
+
   --Delete Deleting a Task should remove it both from the front end as well as the Database.
   []Delete button
   []Delete AJAX
