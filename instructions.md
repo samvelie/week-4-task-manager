@@ -13,9 +13,9 @@ Here are the specific components for the challenge:
 Create a front end experience that allows a user to create a Task.
   [x] add create task button, maybe a field
 When the Task is created, it should be stored inside of a database (SQL)
-  []button listener
-  []POST AJAX
-  []Route to router.post
+  [x]button listener
+  [x]POST AJAX
+  [x]Route to router.post
   []INSERT SQL
 Whenever a Task is created the front end should refresh to show all tasks that need to be completed.
   []GET AJAX
