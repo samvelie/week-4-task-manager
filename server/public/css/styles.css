@@ -1,11 +1,17 @@
+header {
+  background-color: #e540cf;
+  color: white;
+}
+
 input {
   width:240px;
 }
 
 .task {
   border: 1px dotted black;
+  background-color: #dce6e8;
 }
 
 .completed {
-  color: blue;
+  background-color: #2dc9ed;
 }
