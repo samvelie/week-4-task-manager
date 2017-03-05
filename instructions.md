@@ -11,7 +11,7 @@ You are going to create a 'TO DO' application. This type of application is very 
 Here are the specific components for the challenge:
 
 Create a front end experience that allows a user to create a Task.
-  []add create task button, maybe a field
+  [x] add create task button, maybe a field
 When the Task is created, it should be stored inside of a database (SQL)
   []button listener
   []POST AJAX
@@ -25,7 +25,7 @@ Whenever a Task is created the front end should refresh to show all tasks that n
   []Edit button?
   []Route to router.put
   []UPDATE SQL
-  //Not required 
+  //Not required
 Each Task should have an option to 'Complete' or 'Delete'.
   --Complete
   []Complete button/check box
