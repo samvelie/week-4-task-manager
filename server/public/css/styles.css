@@ -1,6 +1,7 @@
 header {
   background-color: #e540cf;
   color: white;
+  text-align: center;
 }
 
 input {
@@ -8,8 +9,8 @@ input {
 }
 
 .task {
-  border: 1px dotted black;
   background-color: #dce6e8;
+  border-radius: 10px;
 }
 
 .completed {

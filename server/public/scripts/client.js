@@ -3,13 +3,6 @@ $(document).ready(function(){
 
   getAndDisplayTasks();
 
-  //testing adding and removing class on check box click
-  // if($(this).is(':checked')){
-  //   $(this).parent().addClass('completed');
-  // } else {
-  //   $(this).parent().removeClass('completed');
-  // }
-
   $('.taskList').on('change', '.completeBox', function(){
     var taskId = $(this).parent().parent().data('id');
     var isChecked = $(this).is(':checked');
@@ -22,39 +15,24 @@ $(document).ready(function(){
     updateCompleteStatus(taskId, isChecked);
   })
 
-  function updateCompleteStatus(taskId, isChecked){
-    var taskObject = {
-      taskComplete: isChecked
-    }
-    console.log('taskObject being sent to update', taskObject);
-    $.ajax({
-      type: 'PUT',
-      url: 'tasks/update/' + taskId,
-      data: taskObject,
-      success: function(response){
-        console.log('success updating', response);
-        getAndDisplayTasks();
-      },
-      error: function(error){
-        console.log(error);
-      }
-    })
-  }//end updateCompleteStatus function
-
   $('.taskList').on('click', '.delete', function(){
+    var youSure = confirm('Are you sure?');
     var taskId = $(this).parent().data('id');
     console.log('delete button clicked on', taskId);
-    $.ajax({
-      type: 'DELETE',
-      url: 'tasks/delete/' + taskId,
-      success: function(response){
-        console.log('success deleting');
-        getAndDisplayTasks();
-      },
-      error: function(error){
-        console.log(error);
-      }
-    });
+
+    if(youSure){
+      $.ajax({
+        type: 'DELETE',
+        url: 'tasks/delete/' + taskId,
+        success: function(response){
+          console.log('success deleting');
+          getAndDisplayTasks();
+        },
+        error: function(error){
+          console.log(error);
+        }
+      });
+    } 
   })
 
   $('#addTaskButton').on('click', function(){ //better or worse than on submit?
@@ -70,6 +48,7 @@ $(document).ready(function(){
       success: function(response){
         console.log('success posting');
         getAndDisplayTasks();
+        $('#taskInput').val('');
       },
       error: function(error){
         console.log(error);
@@ -77,6 +56,25 @@ $(document).ready(function(){
     })// end ajax post
   });// end add task button listener
 });// end document ready
+
+function updateCompleteStatus(taskId, isChecked){
+  var taskObject = {
+    taskComplete: isChecked
+  }
+  console.log('taskObject being sent to update', taskObject);
+  $.ajax({
+    type: 'PUT',
+    url: 'tasks/update/' + taskId,
+    data: taskObject,
+    success: function(response){
+      console.log('success updating', response);
+      getAndDisplayTasks();
+    },
+    error: function(error){
+      console.log(error);
+    }
+  })
+}//end updateCompleteStatus function
 
 function getAndDisplayTasks(){
   $.ajax({
