@@ -53,6 +53,30 @@ router.post('/new', function(req, res){
   });//end pool.connect
 })//end router.post
 
+router.put('/update/:id', function(req, res){
+  var taskId = req.params.id;
+  var completeStatus = req.body.taskComplete;
+  console.log('taskId is ' + taskId + ' and completeStatus is ' + completeStatus);
+  pool.connect(function(error, client, done){
+    if(error) {
+      console.log('Error connecting to database: ', error);
+      res.sendStatus(500);
+    } else {
+      client.query('UPDATE tasks SET task_complete = $1 WHERE id = $2;',
+      [completeStatus, taskId],
+      function(errorMakingQuery, result){
+        done();
+        if(errorMakingQuery) {
+          console.log('Error updating database:', errorMakingQuery);
+          res.sendStatus(500);
+        } else {
+          res.sendStatus(202);
+        }
+      });
+    }
+  });//end pool.connect
+})//end router.post
+
 router.delete('/delete/:id', function(req, res){
   var taskId= req.params.id;
   console.log('deleting task id#', taskId);

@@ -3,14 +3,42 @@ $(document).ready(function(){
 
   getAndDisplayTasks();
 
+  //testing adding and removing class on check box click
+  // if($(this).is(':checked')){
+  //   $(this).parent().addClass('completed');
+  // } else {
+  //   $(this).parent().removeClass('completed');
+  // }
+
   $('.taskList').on('change', '.completeBox', function(){
-    if($(this).is(':checked')){
-      console.log('input checked');
-      $(this).parent().addClass('completed');
+    var taskId = $(this).parent().parent().data('id');
+    var isChecked = $(this).is(':checked');
+    console.log('complete is ' + isChecked + ' on ' + taskId);
+    if(isChecked){
+      console.log('input checked true');
     } else {
-      $(this).parent().removeClass('completed');
+      console.log('input checked false');
     }
+    updateCompleteStatus(taskId, isChecked);
   })
+
+  function updateCompleteStatus(taskId, isChecked){
+    var taskObject = {
+      taskComplete: isChecked
+    }
+    console.log('taskObject being sent to update', taskObject);
+    $.ajax({
+      type: 'PUT',
+      url: 'tasks/update/' + taskId,
+      data: taskObject,
+      success: function(response){
+        console.log('success updating', response);
+      },
+      error: function(error){
+        console.log(error);
+      }
+    })
+  }//end updateCompleteStatus function
 
   $('.taskList').on('click', '.delete', function(){
     var taskId = $(this).parent().data('id');
