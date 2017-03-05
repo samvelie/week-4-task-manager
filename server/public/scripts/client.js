@@ -33,6 +33,7 @@ $(document).ready(function(){
       data: taskObject,
       success: function(response){
         console.log('success updating', response);
+        getAndDisplayTasks();
       },
       error: function(error){
         console.log(error);
@@ -84,15 +85,25 @@ function getAndDisplayTasks(){
     success: function(response){
       console.log('back from server with:', response); //response is an array containing objects that represent each row of the database
       $('.taskList').empty();
-      var tasksToShow = '';
+      var tasksIncompleted = '';
+      var tasksCompleted = '';
       for (var i = 0; i < response.length; i++) {
-        tasksToShow += '<div class ="task" data-id="' + response[i].id + '">' +
-                       '<h3>' + response[i].description + '</h3>' +
-                       '<p>Complete <input type="checkbox" class="completeBox"></p>' +
-                       '<button class ="delete">Delete</button>' +
-                       '</div>';
+        if(response[i].task_complete){
+          tasksCompleted += '<div class ="task completed" data-id="' + response[i].id + '">' +
+                         '<h3>' + response[i].description + '</h3>' +
+                         '<p>Complete <input type="checkbox" class="completeBox" checked></p>' +
+                         '<button class ="delete">Delete</button>' +
+                         '</div>';
+        } else {
+          tasksIncompleted += '<div class ="task" data-id="' + response[i].id + '">' +
+                         '<h3>' + response[i].description + '</h3>' +
+                         '<p>Complete <input type="checkbox" class="completeBox"></p>' +
+                         '<button class ="delete">Delete</button>' +
+                         '</div>';
+        }
       }
-      $('.taskList').append(tasksToShow);
+      $('.taskList').append(tasksIncompleted);
+      $('.taskList').append(tasksCompleted);
     }
   })
 }
