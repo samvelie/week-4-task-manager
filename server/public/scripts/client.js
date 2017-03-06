@@ -78,30 +78,31 @@ function getAndDisplayTasks(){
     success: function(response){
       console.log('back from server with:', response);
       $('.taskList').empty();
-      var tasksIncompleted = '';
-      var tasksCompleted = '';
+
+      var completedClass = ''; //"task + ' completed'" on completed tasks
+      var checkedProperty = ''; //add checked property to input
+      var tasks = '';
+
       for (var i = 0; i < response.length; i++) {
-        if(response[i].task_complete){
-          tasksCompleted += '<div class="task completed" data-id="' + response[i].id + '">' +
-                         '<h3 class="taskDescribe">' + response[i].description + '</h3>' +
-                         '<input type="checkbox" class="completeBox" id="complete' + response[i].id + '" checked>' +
-                         '<label for="complete' + response[i].id + '" class="completeBoxLabel">COMPLETE</label>' +
-                         '<button class ="delete">DELETE</button>' +
-                         '</div>';
+        if (response[i].task_complete) {
+          completedClass = ' completed';
+          checkedProperty = 'checked';
         } else {
-          tasksIncompleted += '<div class ="task" data-id="' + response[i].id + '">' +
-                         '<h3 class="taskDescribe">' + response[i].description + '</h3>' +
-                         '<input type="checkbox" class="completeBox" id="complete' + response[i].id + '">' +
-                         '<label for="complete' + response[i].id + '" class="completeBoxLabel">COMPLETE</label>' +
-                         '<button class="delete">DELETE</button>' +
-                         '</div>';
+          completedClass = '';
+          checkedProperty = '';
         }
+        tasks += '<div class="task' + completedClass + '" data-id="' + response[i].id + '">' +
+                 '<h3 class="taskDescribe">' + response[i].description + '</h3>' +
+                 '<input type="checkbox" class="completeBox" id="complete' + response[i].id + '"' + checkedProperty + '>' +
+                 '<label for="complete' + response[i].id + '" class="completeBoxLabel">COMPLETE</label>' +
+                 '<button class ="delete">DELETE</button>' +
+                 '</div>';
       }
-      $('.taskList').append(tasksIncompleted);
-      $('.taskList').append(tasksCompleted);
+
+      $('.taskList').append(tasks);
     },
     error: function(error){
       console.log('Error from server', error);
     }
   })
-} //end getAndDisplayTasks function 
+} //end getAndDisplayTasks function
