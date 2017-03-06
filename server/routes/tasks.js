@@ -23,7 +23,7 @@ router.get('/', function(req, res){
           console.log('Error selecting from database: ', errorMakingQuery);
           res.sendStatus(500);
         } else {
-          res.send(result.rows);
+          res.status(200).send(result.rows);
         }
       });
     }

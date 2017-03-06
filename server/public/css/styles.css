@@ -1,16 +1,121 @@
+body {
+  font-family: Helvetica, Georgia, sans-serif;
+}
+
 header {
   background-color: #e540cf;
   color: white;
   text-align: center;
+  border-radius: 5px;
+  padding: 4px;
 }
 
-input {
+header > h1 {
+  margin: 12px;
+}
+
+#addTaskButton {
+  display: inline-block;
+  color: #666;
+  background-color: #eee;
+  letter-spacing: 2px;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+#addTaskButton:hover {
+  background-color: #e3e3e3;
+}
+
+#addTaskButton:active {
+  background-color: #CCC;
+}
+
+#taskInput {
   width:240px;
+  padding: 15px;
+  margin: 10px;
+  border-radius: 5px;
+}
+
+#taskInput:focus {
+  background-color: #dce6e8;
 }
 
 .task {
   background-color: #dce6e8;
   border-radius: 10px;
+  border: 1px ridge gray;
+  text-align: center;
+  position: relative;
+  padding: 2px;
+  word-wrap: break-word;
+}
+
+.task:hover {
+  opacity: 0.8;
+}
+
+.taskDescribe {
+  margin: 8px;
+}
+
+.completeBox {
+  border-radius: 100%;
+  opacity: 0;
+  position: absolute;
+  left: 5px;
+}
+
+.completeBoxLabel {
+  display: inline-block;
+  vertical-align: middle;
+  margin: 5px;
+  cursor: pointer;
+  position: relative;
+}
+
+.completeBox + .completeBoxLabel:before {
+  content: '';
+  background: #fff;
+  border: 2px solid #ddd;
+  display: inline-block;
+  vertical-align: middle;
+  padding: 12px;
+  margin-right: 10px;
+  text-align: left;
+  border-radius: 50%;
+}
+
+.completeBox:checked + .completeBoxLabel:before {
+  background: #23bc2b;
+}
+
+.completeBox:focus + .completeBoxLabel {
+  outline: 1px solid #ddd;
+}
+
+.delete {
+  background-color: black;
+  color: white;
+  display: inline-block;
+  letter-spacing: 2px;
+  font-size: 12px;
+  padding: 5px;
+  margin: 3px;
+  border-radius: 5px;
+  position: absolute;
+  right: 2px;
+  vertical-align: top;
+}
+
+.delete:hover{
+  background-color: red;
+  cursor: pointer;
+}
+
+.delete:active{
+  background-color: yellow;
 }
 
 .completed {
