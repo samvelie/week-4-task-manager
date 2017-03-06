@@ -25,7 +25,7 @@ Whenever a Task is created the front end should refresh to show all tasks that n
 Each Task should have an option to 'Complete' or 'Delete'.
   --For Complete
   [x]Complete button/check box
-  []router.put
+  [x]router.put
   Whether or not a Task is complete should also be stored in the database.
   [x] Insert True into Complete Column
 
@@ -58,7 +58,7 @@ Database Structure
 Please include a database.sql text file in your repo that includes all of your CREATE TABLE queries. This is so we can re-create your database while testing your app.
 
 HARD MODE
-[]In whatever fashion you would like, create an 'are you sure: yes / no' option when deleting a task. Once again, you can interrupt this however you would like.
+[x]In whatever fashion you would like, create an 'are you sure: yes / no' option when deleting a task. Once again, you can interrupt this however you would like.
 
 PRO MODE
 [x]Adjust the logic so that completed tasks are brought to the bottom of the page, where the remaining tasks left to complete are brought to the top of the list.
