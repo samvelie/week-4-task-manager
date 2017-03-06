@@ -79,14 +79,12 @@ function getAndDisplayTasks(){
       console.log('back from server with:', response);
       $('.taskList').empty();
 
-      var completedClass = ''; //"task + ' completed'" on completed tasks
-      var checkedProperty = ''; //add checked property to input
-      var tasks = '';
+      var tasks = ''; //will take html string to be appended
 
       for (var i = 0; i < response.length; i++) {
-        if (response[i].task_complete) {
-          completedClass = ' completed';
-          checkedProperty = 'checked';
+        if (response[i].task_complete) {    //if completed, adds a class and a checked property that CSS uses
+          var completedClass = ' completed';
+          var checkedProperty = 'checked';
         } else {
           completedClass = '';
           checkedProperty = '';
